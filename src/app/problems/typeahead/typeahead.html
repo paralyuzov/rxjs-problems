@@ -1,0 +1,34 @@
+<div class="p-6 border rounded-lg shadow-sm bg-white">
+  <h2 class="text-xl font-bold mb-4">Problem 2: Typeahead Search</h2>
+  <div class="mb-4 text-gray-600">
+    <p>Implement a robust typeahead search.</p>
+    <ul class="list-disc list-inside mt-2 text-sm">
+      <li>Debounce input by 300ms</li>
+      <li>Ignore duplicate consecutive values</li>
+      <li>Cancel pending requests (switchMap)</li>
+    </ul>
+  </div>
+
+  <div class="mb-4">
+    <input
+      [formControl]="searchControl"
+      type="text"
+      placeholder="Search fruits..."
+      class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+    @if (loading) {
+      <div class="text-sm text-gray-500 mt-1">Loading...</div>
+    }
+  </div>
+
+  <div class="bg-gray-50 rounded p-4 min-h-[100px]">
+    <h3 class="font-semibold mb-2">Results:</h3>
+    <ul>
+      @for (result of results$ | async; track result) {
+        <li class="py-1 border-b last:border-0">{{ result }}</li>
+      } @empty {
+        <li class="text-gray-400 italic">No results</li>
+      }
+    </ul>
+  </div>
+</div>

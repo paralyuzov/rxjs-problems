@@ -1,0 +1,17 @@
+<div class="p-6 border rounded-lg shadow-sm bg-white select-none">
+  <h2 class="text-xl font-bold mb-4">Problem 6: Drag and Drop</h2>
+  <div class="mb-4 text-gray-600">
+    <p>Implement drag and drop logic for the red box using RxJS.</p>
+  </div>
+
+  <div #container class="relative w-full h-64 bg-gray-100 border rounded overflow-hidden">
+    <div
+      #box
+      class="absolute w-16 h-16 bg-red-500 rounded shadow cursor-grab active:cursor-grabbing flex items-center justify-center text-white text-xs font-bold"
+      [style.left.px]="position().x"
+      [style.top.px]="position().y"
+    >
+      Drag Me
+    </div>
+  </div>
+</div>

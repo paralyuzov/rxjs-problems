@@ -1,0 +1,30 @@
+<div class="p-6 border rounded-lg shadow-sm bg-white">
+  <h2 class="text-xl font-bold mb-4">Problem 9: Race Conditions</h2>
+  <div class="mb-4 text-gray-600">
+    <p>Visualize `switchMap` vs `mergeMap`. Ensure only the latest request wins.</p>
+  </div>
+
+  <div class="flex items-center gap-4 mb-4">
+    <button
+      (click)="startRequest(1000)"
+      class="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 active:bg-yellow-700 transition"
+    >
+      Start Fast (1s)
+    </button>
+
+    <button
+      (click)="startRequest(3000)"
+      class="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600 active:bg-orange-700 transition"
+    >
+      Start Slow (3s)
+    </button>
+  </div>
+
+  <div
+    class="bg-gray-900 text-white p-4 rounded font-mono text-sm min-h-[150px] max-h-[300px] overflow-auto"
+  >
+    @for (log of logs(); track log) {
+      <div class="border-b border-gray-700 py-1 last:border-0">{{ log }}</div>
+    }
+  </div>
+</div>

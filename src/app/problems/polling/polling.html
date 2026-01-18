@@ -1,0 +1,31 @@
+<div class="p-6 border rounded-lg shadow-sm bg-white">
+  <h2 class="text-xl font-bold mb-4">Problem 4: Polling Service</h2>
+  <div class="mb-4 text-gray-600">
+    <p>Poll the mock API every 3 seconds. Stop on click or destroy.</p>
+  </div>
+
+  <div class="flex items-center gap-4 mb-4">
+    <button
+      (click)="startPolling()"
+      class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700 transition"
+    >
+      Start Polling
+    </button>
+
+    <button
+      (click)="stopPolling()"
+      class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 active:bg-red-700 transition"
+    >
+      Stop Polling
+    </button>
+  </div>
+
+  <div class="mb-2">
+    Status:
+    <span [class.text-green-600]="status === 'Polling...'" class="font-bold">{{ status }}</span>
+  </div>
+
+  <div class="p-4 bg-gray-50 rounded">
+    Latest Value: <span class="font-mono">{{ data$ | async }}</span>
+  </div>
+</div>

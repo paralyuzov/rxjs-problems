@@ -1,0 +1,19 @@
+<div class="p-6 border rounded-lg shadow-sm bg-white">
+  <h2 class="text-xl font-bold mb-4">Problem 5: Sequential Requests</h2>
+  <div class="mb-4 text-gray-600">
+    <p>Chain three dependent requests: User -> Posts -> Comments.</p>
+  </div>
+
+  <button
+    (click)="startSequence()"
+    class="mb-4 px-4 py-2 bg-indigo-500 text-white rounded hover:bg-indigo-600 active:bg-indigo-700 transition"
+  >
+    Load Data Sequence
+  </button>
+
+  <div class="bg-gray-900 text-green-400 p-4 rounded font-mono text-sm min-h-[150px]">
+    @for (log of logs(); track log) {
+      <div>{{ log }}</div>
+    }
+  </div>
+</div>

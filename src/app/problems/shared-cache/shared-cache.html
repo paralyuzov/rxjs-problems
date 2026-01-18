@@ -1,0 +1,31 @@
+<div class="p-6 border rounded-lg shadow-sm bg-white">
+  <h2 class="text-xl font-bold mb-4">Problem 8: Shared Caching</h2>
+  <div class="mb-4 text-gray-600">
+    <p>Cache the API response for 5 seconds using RxJS operators.</p>
+    <p class="text-sm italic mt-1">Open console to verify API calls are not duplicated.</p>
+  </div>
+
+  <div class="grid grid-cols-2 gap-4">
+    <div class="p-4 border rounded bg-gray-50">
+      <h3 class="font-bold mb-2">Subscriber 1</h3>
+      <button
+        (click)="subscribe1()"
+        class="mb-2 px-3 py-1 bg-blue-500 text-white rounded text-sm hover:bg-blue-600"
+      >
+        Subscribe
+      </button>
+      <div class="font-mono text-sm mt-2">{{ subscriber1Data() }}</div>
+    </div>
+
+    <div class="p-4 border rounded bg-gray-50">
+      <h3 class="font-bold mb-2">Subscriber 2</h3>
+      <button
+        (click)="subscribe2()"
+        class="mb-2 px-3 py-1 bg-green-500 text-white rounded text-sm hover:bg-green-600"
+      >
+        Subscribe (Late)
+      </button>
+      <div class="font-mono text-sm mt-2">{{ subscriber2Data() }}</div>
+    </div>
+  </div>
+</div>
