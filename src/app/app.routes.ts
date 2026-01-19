@@ -8,6 +8,8 @@ import { DragDropComponent } from './problems/drag-drop/drag-drop';
 import { RetryBackoffComponent } from './problems/retry-backoff/retry-backoff';
 import { SharedCacheComponent } from './problems/shared-cache/shared-cache';
 import { RaceConditionComponent } from './problems/race-condition/race-condition';
+import { InfiniteScrollComponent } from './problems/infinite-scroll/infinite-scroll';
+import { OfflineQueueComponent } from './problems/offline-queue/offline-queue';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'double-click', pathMatch: 'full' },
@@ -20,4 +22,6 @@ export const routes: Routes = [
   { path: 'retry-backoff', component: RetryBackoffComponent },
   { path: 'shared-cache', component: SharedCacheComponent },
   { path: 'race-condition', component: RaceConditionComponent },
+  { path: 'infinite-scroll', component: InfiniteScrollComponent },
+  { path: 'offline-queue', component: OfflineQueueComponent },
 ];

@@ -1,0 +1,34 @@
+<div class="p-6 border rounded-lg shadow-sm bg-white">
+  <h2 class="text-xl font-bold mb-4">Problem 12: Offline Request Queue</h2>
+  <div class="mb-4 text-gray-600">
+    <p>Queue requests when offline, and replay them when connection is restored.</p>
+  </div>
+
+  <div class="flex items-center gap-4 mb-6">
+    <button
+      (click)="toggleConnection()"
+      [class.bg-green-100]="isOnline()"
+      [class.text-green-700]="isOnline()"
+      [class.bg-red-100]="!isOnline()"
+      [class.text-red-700]="!isOnline()"
+      class="px-4 py-2 rounded font-bold border"
+    >
+      {{ isOnline() ? '🟢 Connected' : '🔴 Disconnected' }}
+    </button>
+
+    <button
+      (click)="makeRequest()"
+      class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 active:bg-blue-800 transition"
+    >
+      Make Request
+    </button>
+  </div>
+
+  <div
+    class="bg-gray-900 text-white p-4 rounded font-mono text-sm min-h-[200px] max-h-[400px] overflow-auto"
+  >
+    @for (log of logs(); track $index) {
+      <div class="border-b border-gray-700 py-1 last:border-0 opacity-90">{{ log }}</div>
+    }
+  </div>
+</div>

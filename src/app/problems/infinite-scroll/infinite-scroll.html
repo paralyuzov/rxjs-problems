@@ -1,0 +1,29 @@
+<div class="p-6 border rounded-lg shadow-sm bg-white h-[600px] flex flex-col">
+  <h2 class="text-xl font-bold mb-4">Problem 11: Infinite Scroll</h2>
+  <div class="mb-4 text-gray-600">
+    <p>Load more items when scrolling to the bottom of the list. Prevent duplicate requests.</p>
+  </div>
+
+  <div
+    #scroller
+    class="flex-1 overflow-y-auto border border-gray-300 rounded bg-gray-50 p-4 space-y-2 scroll-container"
+  >
+    @for (item of items; track item) {
+      <div class="p-4 bg-white shadow rounded flex items-center gap-4">
+        <div
+          class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold"
+        >
+          {{ item }}
+        </div>
+        <div class="flex-1">
+          <div class="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+          <div class="h-3 bg-gray-100 rounded w-1/2"></div>
+        </div>
+      </div>
+    }
+
+    @if (loading()) {
+      <div class="p-4 text-center text-gray-500 italic animate-pulse">Loading more items...</div>
+    }
+  </div>
+</div>
