@@ -1,0 +1,41 @@
+<div class="p-6 max-w-2xl mx-auto">
+  <h2 class="text-2xl font-bold mb-4">Auto-Save Form</h2>
+
+  <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+    <p class="text-gray-600 mb-6">
+      Type in the fields below. The form should auto-save after 1 second of inactivity. <br />
+      Notice the status indicator.
+    </p>
+
+    <form [formGroup]="form" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Title</label>
+        <input
+          formControlName="title"
+          type="text"
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+          placeholder="Enter title..."
+        />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Content</label>
+        <textarea
+          formControlName="content"
+          rows="5"
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+          placeholder="Start writing..."
+        ></textarea>
+      </div>
+    </form>
+
+    <div class="mt-6 flex items-center justify-between">
+      <span class="text-sm text-gray-500">
+        Status:
+        <span class="font-semibold text-blue-600">
+          {{ saveStatus$ | async }}
+        </span>
+      </span>
+    </div>
+  </div>
+</div>

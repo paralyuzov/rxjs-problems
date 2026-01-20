@@ -1,7 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Observable, timer, of } from 'rxjs';
-import { map, shareReplay, tap } from 'rxjs/operators';
+import { Observable, timer, ReplaySubject } from 'rxjs';
+import { map, tap, share, concatWith, ignoreElements } from 'rxjs/operators';
 
 @Component({
   selector: 'app-shared-cache',
@@ -10,7 +10,7 @@ import { map, shareReplay, tap } from 'rxjs/operators';
   templateUrl: './shared-cache.html',
   styleUrl: './shared-cache.css',
 })
-export class SharedCacheComponent {
+export class SharedCacheComponent implements OnInit {
   data$!: Observable<string>;
   subscriber1Data = signal<string>('');
   subscriber2Data = signal<string>('');
@@ -23,11 +23,8 @@ export class SharedCacheComponent {
   // 3. If a second subscriber joins within 5 seconds, they get the cached value
   //    WITHOUT triggering a new API call.
   // 4. After 5 seconds, the cache expires, and a new subscription triggers a new call.
-  //
-  // HINT: `shareReplay({ bufferSize: 1, windowTime: 5000 })`
-  // -------------------------------------------------------------------
 
-  constructor() {
+  ngOnInit() {
     this.data$ = this.fetchDataFromApi();
   }
 
@@ -35,21 +32,23 @@ export class SharedCacheComponent {
     return timer(1000).pipe(
       map(() => `Data generated at ${new Date().toLocaleTimeString()}`),
       tap(() => console.log('API Request made!')),
-      shareReplay({
-        bufferSize: 1,
-        windowTime: 5000,
-        refCount: true,
+      concatWith(timer(5000).pipe(ignoreElements())),
+      share({
+        connector: () => new ReplaySubject(1),
+        resetOnComplete: true,
+        resetOnRefCountZero: true,
+        resetOnError: true,
       }),
     );
   }
 
   subscribe1() {
     this.subscriber1Data.set('Loading...');
-    this.data$.subscribe((val) => (this.subscriber1Data.set(val)));
+    this.data$.subscribe((val) => this.subscriber1Data.set(val));
   }
 
   subscribe2() {
     this.subscriber2Data.set('Loading...');
-    this.data$.subscribe((val) => (this.subscriber2Data.set(val)));
+    this.data$.subscribe((val) => this.subscriber2Data.set(val));
   }
 }

@@ -24,4 +24,8 @@ export const routes: Routes = [
   { path: 'race-condition', component: RaceConditionComponent },
   { path: 'infinite-scroll', component: InfiniteScrollComponent },
   { path: 'offline-queue', component: OfflineQueueComponent },
+  {
+    path: 'auto-save',
+    loadComponent: () => import('./problems/auto-save/auto-save').then((m) => m.AutoSaveComponent),
+  },
 ];
